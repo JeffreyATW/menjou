@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    %title
+      = @business.name
+      |
+      = @menu.name
+    = stylesheet_link_tag "menu"
+  %body
+    = yield

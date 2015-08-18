@@ -1,4 +1,6 @@
 Menjou::Application.routes.draw do
+  resources :categories_items
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -24,6 +26,10 @@ Menjou::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+
+  resources :businesses do
+    resources :menus
+  end
 
   # Sample resource route with sub-resources:
   #   resources :products do

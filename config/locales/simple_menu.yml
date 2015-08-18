@@ -1,0 +1,6 @@
+en:
+  menus:
+    simple_menu:
+      served: "Served%{start_time}%{end_time}"
+      from: " from %{start_time}"
+      until: " until %{end_time}"

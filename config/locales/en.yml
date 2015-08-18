@@ -3,3 +3,4 @@
 
 en:
   hello: "Hello world"
+  city_state_postal_code_html: "%{city}, %{state} %{postal_code}"

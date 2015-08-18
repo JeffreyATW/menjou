@@ -1,0 +1,45 @@
+%h1= @business.name
+
+.menu
+  - @menu.categories.each do |category|
+    - if category.placements.present?
+      %section.category
+        - if category.start_time or category.end_time
+          %hgroup
+            %h1= category.name
+            %h2= t('menus.simple_menu.served', |
+                   :start_time => category.start_time ? t('menus.simple_menu.from', :start_time => category.start_time.strftime("%l %p")) : "", |
+                   :end_time => category.end_time ? t('menus.simple_menu.until', :end_time => category.end_time.strftime("%l %p")) : "") |
+        - else
+          %h1= category.name
+        %ul.placements
+          - category.placements.each do |placement|
+            %li.placement
+              %h3= placement.item.name
+              - if placement.item.tags.present?
+                %ul.tags.clearfix
+                  - placement.item.tags.each do |tag|
+                    %li= tag.name
+              %p= placement.item.description
+              .price= placement.price
+  - if @menu.tags.present?
+    %dl.tag_defs
+      - @menu.tags.each do |tag|
+        %dt
+          %dfn= tag.name
+        %dd= tag.description
+  .footnotes= @menu.footnotes.html_safe
+
+- if @business.address_1 or @business.city
+  .address
+    .business_name= @business.name
+    - if @business.address_1
+      .address_1= @business.address_1
+    - if @business.address_2
+      .address_2= @business.address_2
+    - if @business.city and @business.postal_code
+      .city_state_postal_code
+        = t('city_state_postal_code_html', :city => @business.city, :state => @business.state, :postal_code => @business.postal_code)
+    - elsif @business.city
+      .city
+        = @business.city
